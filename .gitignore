@@ -1,1 +1,27 @@
 Electric_Vehicle_Population_Data.csv
+# Python cache & bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# R execution history & workspace state
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Environment & IDE settings
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Data directory rules (Keep raw cache out of Git, track processed dataset)
+data/raw/*
+!data/raw/.gitkeep

@@ -1,0 +1,66 @@
+name: EV Transition Analytics CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Set up R 4.2
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.2'
+
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Install R Dependencies
+      run: |
+        Rscript -e "install.packages(c('ggplot2', 'dplyr'), repos='https://cloud.r-project.org/')"
+
+    - name: Execute Data Loader
+      run: |
+        python python/data_loader.py
+
+    - name: Execute Matplotlib Analytics Pipeline
+      run: |
+        python python/matplotlib_analytics.py
+
+    - name: Execute Seaborn Analytics Pipeline
+      run: |
+        python python/seaborn_analytics.py
+
+    - name: Execute plotnine Analytics Pipeline
+      run: |
+        python python/plotnine_analytics.py
+
+    - name: Execute R ggplot2 Analytics Pipeline
+      run: |
+        Rscript r/ggplot2_analytics.R
+
+    - name: Execute Performance Benchmark
+      run: |
+        python benchmarks/performance_benchmark.py
+
+    - name: Verify Visual Asset Generation
+      run: |
+        test -f assets/matplotlib_ev_trend.png
+        test -f assets/seaborn_ev_distribution.png
+        test -f assets/plotnine_ev_density_facet.png
+        test -f assets/ggplot2_ev_density_facet.png
+        echo "All analytics pipelines executed and visual assets generated successfully!"
