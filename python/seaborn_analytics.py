@@ -5,11 +5,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-PROCESSED_PATH = os.path.join("data", "processed", "ev_population_clean.csv")
+PROCESSED_PATH = os.path.join("data", "processed", "ev_population_cleaned.csv")
 ASSET_PATH = os.path.join("assets", "seaborn_ev_distribution.png")
 
 
 def render_terminal_preview(image_path):
+    """Renders the saved image directly inside the terminal if a supported tool is available."""
     print("\n--- Terminal Graphic Preview ---")
     if shutil.which("chafa"):
         subprocess.run(["chafa", image_path])
@@ -26,6 +27,7 @@ def render_terminal_preview(image_path):
 
 
 def run_seaborn_pipeline():
+    """Generates statistical visualizations using Seaborn and exports a 300 DPI PNG asset."""
     print("[INFO] Executing Seaborn analytics pipeline...")
 
     if not os.path.exists(PROCESSED_PATH):
@@ -38,6 +40,7 @@ def run_seaborn_pipeline():
 
     sns.set_theme(style="whitegrid", palette="muted")
 
+    # Configure 2x2 grid canvas
     fig, axs = plt.subplots(2, 2, figsize=(14, 10))
     fig.suptitle(
         "EV Statistical Distribution & Feature Relationships (Seaborn Ecosystem)",

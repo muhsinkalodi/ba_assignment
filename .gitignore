@@ -1,27 +1,50 @@
-Electric_Vehicle_Population_Data.csv
-# Python cache & bytecode files
 __pycache__/
 *.py[cod]
 *$py.class
+
 *.so
 
-# R execution history & workspace state
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+data/*.csv
+data/raw/*.csv
+data/processed/*.csv
+*.csv
+
 .Rhistory
 .RData
 .Ruserdata
 .Rproj.user/
 
-# Environment & IDE settings
-.venv/
-venv/
-env/
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# OS-generated files
 .DS_Store
+.DS_Store?
+ehthumbs.db
 Thumbs.db
-
-# Data directory rules (Keep raw cache out of Git, track processed dataset)
-data/raw/*
-!data/raw/.gitkeep

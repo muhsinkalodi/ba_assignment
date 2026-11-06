@@ -15,7 +15,7 @@ run_ggplot2_pipeline <- function() {
   
   df <- read.csv(processed_path, stringsAsFactors = FALSE)
   
-  df_valid <- df %>% filter(`Electric.Range` > 0)
+  df_valid <- df %>% filter(Electric.Range > 0)
   
   top_makes <- df_valid %>%
     count(Make, sort = TRUE) %>%
@@ -41,7 +41,7 @@ run_ggplot2_pipeline <- function() {
       legend.position = "bottom"
     )
   
-  dir.create(dirname(asset_path), recursive = TRUE, showwarnings = FALSE)
+  dir.create(dirname(asset_path), recursive = TRUE, showWarnings = FALSE)
   
   ggsave(
     filename = asset_path,

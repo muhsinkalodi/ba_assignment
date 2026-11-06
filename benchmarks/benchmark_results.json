@@ -1,0 +1,30 @@
+[
+  {
+    "framework": "Matplotlib",
+    "type": "Python (Imperative)",
+    "loc": 87,
+    "execution_time_sec": 16.939,
+    "asset_size_kb": 457.23
+  },
+  {
+    "framework": "Seaborn",
+    "type": "Python (Statistical)",
+    "loc": 114,
+    "execution_time_sec": 28.404,
+    "asset_size_kb": 586.38
+  },
+  {
+    "framework": "plotnine",
+    "type": "Python (Grammar of Graphics)",
+    "loc": 67,
+    "execution_time_sec": 42.229,
+    "asset_size_kb": 296.6
+  },
+  {
+    "framework": "ggplot2",
+    "type": "R (Grammar of Graphics)",
+    "loc": 45,
+    "execution_time_sec": 12.037,
+    "asset_size_kb": 252.41
+  }
+]
