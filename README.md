@@ -34,6 +34,7 @@ The raw dataset contains over 150,000 individual registration records of Battery
 
 ## Project Repository Architecture
 
+```text
 ev-transition-analytics-suite/
 ├── .github/
 │   └── workflows/
@@ -44,7 +45,7 @@ ev-transition-analytics-suite/
 │   └── processed/
 │       └── .gitkeep                 # Cleaned dataset output folder
 ├── python/
-│   ├── init.py
+│   ├── __init__.py
 │   ├── data_loader.py               # Data ingestion & feature selection script
 │   ├── matplotlib_analytics.py      # Imperative multi-panel grid plotting script
 │   ├── seaborn_analytics.py         # Statistical KDE & boxplot distribution script
@@ -61,8 +62,7 @@ ev-transition-analytics-suite/
 ├── .gitignore                       # Git ignore configuration (includes datasets)
 ├── LICENSE                          # MIT License
 └── README.md                        # Documentation & assignment report
-
----
+```
 
 ## Visual Deliverables & Output Showcase
 
