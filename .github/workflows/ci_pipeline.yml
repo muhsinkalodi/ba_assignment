@@ -21,25 +21,27 @@ jobs:
 
     - name: Set up R Environment
       uses: r-lib/actions/setup-r@v2
+      with:
+        use-public-rspm: true
 
-    - name: Install System Utilities (Chafa)
+    - name: Install System Utilities (Chafa & Dependencies)
       run: |
         sudo apt-get update
-        sudo apt-get install -y chafa
+        sudo apt-get install -y chafa libcurl4-openssl-dev libssl-dev libxml2-dev
 
     - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Install R Dependencies
+    - name: Install R Dependencies (Fast Binary Mode)
       run: |
-        Rscript -e "install.packages(c('ggplot2', 'dplyr'), repos='https://cloud.r-project.org/')"
+        Rscript -e "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/noble/latest')); install.packages(c('ggplot2', 'dplyr'))"
 
     - name: Download Sample Dataset for CI Testing
       run: |
         mkdir -p data/raw
-        curl -o data/raw/Electric_Vehicle_Population_Data.csv "https://data.wa.gov/api/views/f6w7-q2d2/rows.csv?accessType=DOWNLOAD"
+        curl -sL -o data/raw/Electric_Vehicle_Population_Data.csv "https://data.wa.gov/api/views/f6w7-q2d2/rows.csv?accessType=DOWNLOAD"
 
     - name: Run Data Hygiene & Cleaning Pipeline
       run: python python/data_loader.py
